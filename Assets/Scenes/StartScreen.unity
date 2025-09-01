@@ -2278,9 +2278,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd45601d217d964ab71a64f46304962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneController: {fileID: 46351688}
+  lobbyScene: Lobby
   createInput: {fileID: 41316824}
   joinInput: {fileID: 1635618583}
-  lobbyScene: Lobby
 --- !u!1 &1990739829
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 using TMPro;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
@@ -21,7 +22,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void CreateRoom()
     {
-        PhotonNetwork.CreateRoom(createInput.text);
+        PhotonNetwork.JoinOrCreateRoom(createInput.text, new RoomOptions(), TypedLobby.Default);
     }
 
     public void JoinRoom(string roomName)
