@@ -15,11 +15,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     [SerializeField] private TMP_InputField createInput;
     [SerializeField] private TMP_InputField joinInput;
 
-    private void Update()
-    {
-        print(PhotonNetwork.CountOfPlayersInRooms);
-    }
-
     public void CreateRoom()
     {
         PhotonNetwork.JoinOrCreateRoom(createInput.text, new RoomOptions(), TypedLobby.Default);
@@ -43,12 +38,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        sceneController.ChangeScene(lobbyScene);
+        PhotonNetwork.LoadLevel(lobbyScene);
     }
 
     public override void OnJoinedLobby()
     {
-        PhotonNetwork.LoadLevel(lobbyScene); // for starting the server actually
+        //PhotonNetwork.LoadLevel(lobbyScene); // for starting the server actually
         //sceneController.ChangeScene(lobbyScene);
     }
 }

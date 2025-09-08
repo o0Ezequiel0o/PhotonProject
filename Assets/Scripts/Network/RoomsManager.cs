@@ -20,6 +20,11 @@ public class RoomsManager : MonoBehaviourPunCallbacks
         }
     }
 
+    private void Awake()
+    {
+        //PhotonNetwork.CreateRoom("tempIgnore");
+    }
+
     private GameObject CreateRoomPrefab(RoomInfo roomInfo)
     {
         GameObject roomInstance = Instantiate(roomPrefab, container);

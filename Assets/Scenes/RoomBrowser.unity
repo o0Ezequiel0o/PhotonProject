@@ -661,6 +661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   container: {fileID: 1657473471}
   roomPrefab: {fileID: 5304426374997446995, guid: 9a3679e1a3095494a83e2f78c0f361ca, type: 3}
+  lobbyScene: Lobby
 --- !u!1 &2007873764
 GameObject:
   m_ObjectHideFlags: 0

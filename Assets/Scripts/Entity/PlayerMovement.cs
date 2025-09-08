@@ -6,25 +6,23 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    [SerializeField] private PhotonView photonView;
+    
     public float movSpeed;
     float speedX, speedY;
     Rigidbody2D rb;
     public GameObject canvasName;
     public TextMeshProUGUI text;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         text.text = GetComponent<PhotonView>().Controller.NickName;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(GetComponent<PhotonView>().IsMine == true)
+        if(photonView.IsMine)
         {
             speedX = Input.GetAxisRaw("Horizontal") * movSpeed;
             speedY = Input.GetAxisRaw("Vertical") * movSpeed;
