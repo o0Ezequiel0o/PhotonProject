@@ -532,11 +532,16 @@ GameObject:
   - component: {fileID: 4816573704908585879}
   - component: {fileID: 6371052916873527321}
   - component: {fileID: -612894890653856056}
-  - component: {fileID: 3127544196857933283}
-  - component: {fileID: -8945495485131126807}
+  - component: {fileID: -3216321836333571712}
+  - component: {fileID: 1745458468652009793}
+  - component: {fileID: 9047564189174228736}
+  - component: {fileID: 6369535788572700540}
+  - component: {fileID: 6409433004738465764}
   - component: {fileID: 5111919924432004082}
+  - component: {fileID: 2155995031915231573}
   - component: {fileID: 8769211235237145864}
-  - component: {fileID: -7428997732934497169}
+  - component: {fileID: 6345529511647475929}
+  - component: {fileID: 3416507114737062984}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -590,7 +595,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &4816573704908585879
 CircleCollider2D:
@@ -683,7 +688,7 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!114 &3127544196857933283
+--- !u!114 &-3216321836333571712
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -692,14 +697,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5544723070002177578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72fb82f3651fb814b84c99e6332df92b, type: 3}
+  m_Script: {fileID: 11500000, guid: be07c1643fabcc24db07650f178f7593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  photonView: {fileID: 6371052916873527321}
-  movSpeed: 10
-  canvasName: {fileID: 1514156406913080289}
-  text: {fileID: 4138220056946260313}
---- !u!114 &-8945495485131126807
+--- !u!114 &1745458468652009793
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -708,7 +709,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 5544723070002177578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23f54944cc7e4834a954da736f8c1f6f, type: 3}
+  m_Script: {fileID: 11500000, guid: 9590214850b0b434f93a53824e7736c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidBody: {fileID: -4356146055413737725}
+  forceReceivedMultiplier: 1
+  linearDamping: 0.2
+  useConstantSpeed: 1
+--- !u!114 &9047564189174228736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5544723070002177578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15e141a79a2801543b9efe5fefa01eb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed:
@@ -717,7 +734,42 @@ MonoBehaviour:
     valueLimits:
       min: -Infinity
       max: Infinity
-  pivot: {fileID: 6373747556651119217}
+  physics: {fileID: 1745458468652009793}
+--- !u!114 &6369535788572700540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5544723070002177578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed9b6319f3489b4d8daed6483aa53d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  physics: {fileID: 1745458468652009793}
+  moveSpeed:
+    baseValue: 4
+    increase: 0
+    valueLimits:
+      min: -Infinity
+      max: Infinity
+--- !u!114 &6409433004738465764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5544723070002177578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c3c2011aac22a4db07410ca89a907a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 2
+  layer:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &5111919924432004082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -730,10 +782,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 212146e174023bd478330bfd6bb6612e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityAim: {fileID: -8945495485131126807}
+  entityAim: {fileID: 9047564189174228736}
   photonView: {fileID: 6371052916873527321}
   center: {fileID: 6373747556651119217}
   updateMode: 1
+--- !u!114 &2155995031915231573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5544723070002177578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 148f3288a387bd44e93f643e21e00c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityMove: {fileID: 6369535788572700540}
+  photonView: {fileID: 6371052916873527321}
 --- !u!210 &8769211235237145864
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -746,7 +812,7 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 0
---- !u!114 &-7428997732934497169
+--- !u!114 &6345529511647475929
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -755,13 +821,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 5544723070002177578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 000b1d359d89f93478f296b7324a574c, type: 3}
+  m_Script: {fileID: 11500000, guid: f0ef07f7dcdac3145a64cd5c8a313c70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 6373747556651119217}
-  shootPos: {fileID: 7641303231715402580}
-  entityAim: {fileID: -8945495485131126807}
   photonView: {fileID: 6371052916873527321}
+  interactionHandler: {fileID: 6409433004738465764}
+--- !u!114 &3416507114737062984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5544723070002177578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3db988ba318d1294da167d8bb04a8515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabPosition: {fileID: 7641303231715402580}
+  pivot: {fileID: 6373747556651119217}
+  PhotonView: {fileID: 6371052916873527321}
+  maxWeapons: 1
+  currentWeapon: {fileID: 0}
 --- !u!1 &6242593214637280706
 GameObject:
   m_ObjectHideFlags: 0

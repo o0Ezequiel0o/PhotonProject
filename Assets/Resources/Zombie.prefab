@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1478888604016615765}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.65, z: 0}
+  m_LocalPosition: {x: 0, y: -0.703, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -346,7 +346,7 @@ Transform:
   m_GameObject: {fileID: 3771659345046981015}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.65, z: 0}
+  m_LocalPosition: {x: 0, y: -0.703, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -430,7 +430,7 @@ Transform:
   m_GameObject: {fileID: 5104572021450602296}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.65, z: 0}
+  m_LocalPosition: {x: 0, y: -0.703, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -501,10 +501,12 @@ GameObject:
   - component: {fileID: 4816573704908585879}
   - component: {fileID: 6371052916873527321}
   - component: {fileID: -612894890653856056}
-  - component: {fileID: 3127544196857933283}
-  - component: {fileID: -8945495485131126807}
-  - component: {fileID: 5111919924432004082}
-  - component: {fileID: 1827373949077565583}
+  - component: {fileID: 4157617755019638965}
+  - component: {fileID: 4500757109185041533}
+  - component: {fileID: 2141847252736096073}
+  - component: {fileID: 3622694448099787295}
+  - component: {fileID: 5134877257275472764}
+  - component: {fileID: 1833972468810539674}
   - component: {fileID: 8769211235237145864}
   m_Layer: 0
   m_Name: Zombie
@@ -594,7 +596,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.315}
   serializedVersion: 2
-  m_Radius: 1.3
+  m_Radius: 0.6
 --- !u!114 &6371052916873527321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -651,7 +653,7 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!114 &3127544196857933283
+--- !u!114 &4157617755019638965
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -660,14 +662,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5544723070002177578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72fb82f3651fb814b84c99e6332df92b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9590214850b0b434f93a53824e7736c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  photonView: {fileID: 6371052916873527321}
-  movSpeed: 10
-  canvasName: {fileID: 1514156406913080289}
-  text: {fileID: 4138220056946260313}
---- !u!114 &-8945495485131126807
+  rigidBody: {fileID: -4356146055413737725}
+  forceReceivedMultiplier: 1
+  linearDamping: 0.2
+  useConstantSpeed: 1
+--- !u!114 &4500757109185041533
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -676,17 +678,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 5544723070002177578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23f54944cc7e4834a954da736f8c1f6f, type: 3}
+  m_Script: {fileID: 11500000, guid: eed9b6319f3489b4d8daed6483aa53d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed:
-    baseValue: 180
+  physics: {fileID: 4157617755019638965}
+  moveSpeed:
+    baseValue: 2
     increase: 0
     valueLimits:
       min: -Infinity
       max: Infinity
-  pivot: {fileID: 6373747556651119217}
---- !u!114 &5111919924432004082
+--- !u!114 &2141847252736096073
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -695,14 +697,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5544723070002177578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 212146e174023bd478330bfd6bb6612e, type: 3}
+  m_Script: {fileID: 11500000, guid: bf658f9f9d7617440a5382c175023649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityAim: {fileID: -8945495485131126807}
-  photonView: {fileID: 6371052916873527321}
-  center: {fileID: 6373747556651119217}
-  updateMode: 1
---- !u!114 &1827373949077565583
+  graph: 0
+--- !u!114 &3622694448099787295
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -711,7 +710,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 5544723070002177578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1b78aa582666984b931ff4b1d712e6c, type: 3}
+  m_Script: {fileID: 11500000, guid: b1cec6d7696df1447ab3f7cfbf091e9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seeker: {fileID: 2141847252736096073}
+  entityMove: {fileID: 4500757109185041533}
+  waypointReachDistance: 0.1
+  pathRecalculateInterval: 1
+  currentPath: []
+--- !u!114 &5134877257275472764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5544723070002177578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 463daa62b62d856499a7642e29c394ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seeker: {fileID: 2141847252736096073}
+  entityMove: {fileID: 4500757109185041533}
+  UseLineOfSight: 0
+  blockLayers:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &1833972468810539674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5544723070002177578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80455a5d23505344aa3963c1826b44e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!210 &8769211235237145864
