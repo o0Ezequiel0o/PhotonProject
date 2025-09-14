@@ -160,6 +160,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   photonView: {fileID: 833101842908909012}
   equipped: 0
+  projectilePrefabName: Bullet
+  projectileSpeed: 10
+  damage: 10
 --- !u!114 &1773789811760537156
 MonoBehaviour:
   m_ObjectHideFlags: 0
