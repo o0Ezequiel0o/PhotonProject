@@ -49,7 +49,7 @@ public class Projectile : MonoBehaviourPun
             if (other.TryGetComponent(out PhotonView targetPv) &&
                 other.TryGetComponent(out Health targetHealth))
             {
-                if (targetHealth.team == attackerTeam) return;
+                //if (targetHealth.team == attackerTeam) return;
                 
                 targetPv.RPC("RPC_TakeDamage", targetPv.Owner, damage, ownerActorNumber, attackerTeam);
 
@@ -58,8 +58,6 @@ public class Projectile : MonoBehaviourPun
                     PhotonNetwork.Destroy(gameObject);
                 }
             }
-        }
-        
-        
+        }    
     }
 }

@@ -35,6 +35,8 @@ public abstract class EntityMove : MonoBehaviour
         }
     }
 
+    protected virtual void Awake() { }
+
     protected virtual void Reset()
     {
         physics = GetComponentInChildren<Physics>();

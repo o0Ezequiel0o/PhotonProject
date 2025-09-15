@@ -1,10 +1,8 @@
 using Photon.Pun;
 using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour, IInteractable
+public abstract class Weapon : MonoBehaviourPun, IInteractable
 {
-    public PhotonView photonView;
-
     public bool equipped = false;
     
     public string projectilePrefabName = "";
@@ -21,5 +19,11 @@ public abstract class Weapon : MonoBehaviour, IInteractable
         }
 
         return false;
+    }
+
+    [PunRPC]
+    public void RPC_OnEquip(bool equipped)
+    {
+        this.equipped = equipped;
     }
 }

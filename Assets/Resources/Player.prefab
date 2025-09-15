@@ -544,6 +544,7 @@ GameObject:
   - component: {fileID: 3416507114737062984}
   - component: {fileID: 6948551516877966212}
   - component: {fileID: 5806886909128924859}
+  - component: {fileID: 4609179597090425422}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -598,7 +599,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &4816573704908585879
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -878,6 +879,20 @@ MonoBehaviour:
   maxHp: 100
   currentHp: 100
   team: 0
+--- !u!114 &4609179597090425422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5544723070002177578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac8025a704d6c349a6b73d827659901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  photonView: {fileID: 6371052916873527321}
+  health: {fileID: 5806886909128924859}
 --- !u!1 &6242593214637280706
 GameObject:
   m_ObjectHideFlags: 0

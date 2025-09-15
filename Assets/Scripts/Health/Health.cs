@@ -6,10 +6,14 @@ using UnityEngine;
 
 public class Health : MonoBehaviourPun
 {
-    public int maxHp = 100;
-    public int currentHp;
+    public float maxHp = 100f;
+    public float currentHp;
 
     public Team team = Team.None;
+
+    public Action onDamageTaken;
+
+    public float Percentage => currentHp / maxHp;
 
     private void Reset()
     {
@@ -18,7 +22,7 @@ public class Health : MonoBehaviourPun
 
     private void Start()
     {
-        if (currentHp <= 0)
+        if (currentHp <= 0f)
         {
             currentHp = maxHp;
         }
@@ -27,10 +31,12 @@ public class Health : MonoBehaviourPun
     [PunRPC]
     public void RPC_TakeDamage(int amount, int attackerActorNumber, Team attackerTeam)
     {
-        if (attackerTeam == team) return;
+        //if (attackerTeam == team) return;
         
         currentHp -= amount;
         Debug.Log($"{gameObject.name} ({team}) took {amount} dmg from Actor {attackerActorNumber}. HP now: {currentHp}");
+
+        onDamageTaken?.Invoke();
 
         if (currentHp <= 0)
         {

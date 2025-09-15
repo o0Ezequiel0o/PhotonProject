@@ -18,9 +18,13 @@ public class WeaponController : MonoBehaviour
 
         if (currentWeapon != null || weapons.Count >= maxWeapons) return false;
 
+        PhotonView targetPv = weapon.GetComponent<PhotonView>();
+
+        targetPv.RPC("RPC_OnEquip", RpcTarget.All, true);
+        weapon.photonView.TransferOwnership(PhotonNetwork.LocalPlayer.ActorNumber);
+
         currentWeapon = weapon;
-        weapon.equipped = true;
-        //weapon.photonView.TransferOwnership(GetComponent<PhotonView>().ViewID);
+
         weapon.transform.rotation = Quaternion.identity;
         return true;
     }

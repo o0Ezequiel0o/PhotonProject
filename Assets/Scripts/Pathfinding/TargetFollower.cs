@@ -19,6 +19,8 @@ public class TargetFollower : TargetFollowerBase
 
     void Update()
     {
+        if (!LocalInstance.isHost) return;
+
         UpdateTargetPosition();
 
         if (!targetChangedNode)

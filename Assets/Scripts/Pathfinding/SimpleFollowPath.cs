@@ -77,6 +77,8 @@ public class SimpleFollowPath : MonoBehaviour, IPathFollower
 
     void Update()
     {
+        if (!LocalInstance.isHost) return;
+
         if (pathCanceled)
         {
             return;

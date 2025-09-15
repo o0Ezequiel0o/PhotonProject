@@ -38,6 +38,7 @@ MonoBehaviour:
   - DestroyRpc
   - RPC_OnDeathAll
   - RPC_TakeDamage
+  - RPC_OnEquip
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
