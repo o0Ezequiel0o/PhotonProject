@@ -9,6 +9,8 @@ public class Health : MonoBehaviourPun
     public int maxHp = 100;
     public int currentHp;
 
+    public Team team = Team.None;
+
     private void Reset()
     {
         currentHp = maxHp;
@@ -23,10 +25,12 @@ public class Health : MonoBehaviourPun
     }
 
     [PunRPC]
-    public void RPC_TakeDamage(int amount, int attackerActorNumber)
+    public void RPC_TakeDamage(int amount, int attackerActorNumber, Team attackerTeam)
     {
+        if (attackerTeam == team) return;
+        
         currentHp -= amount;
-        Debug.Log($"Player {photonView.OwnerActorNr} took {amount} dmg from {attackerActorNumber}. HP now: {currentHp}");
+        Debug.Log($"{gameObject.name} ({team}) took {amount} dmg from Actor {attackerActorNumber}. HP now: {currentHp}");
 
         if (currentHp <= 0)
         {
@@ -36,7 +40,7 @@ public class Health : MonoBehaviourPun
 
     void Die(int attackerActorNumber)
     {
-        Debug.Log($"Player {photonView.OwnerActorNr} died. Killed by {attackerActorNumber}");
+        Debug.Log($"{gameObject.name} ({team}) died. Killed by Actor {attackerActorNumber}");
         
         photonView.RPC("RPC_OnDeathAll", RpcTarget.AllBuffered, attackerActorNumber);
     }

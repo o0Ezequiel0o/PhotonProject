@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviourPun
 {
     private Rigidbody2D rb;
     private int ownerActorNumber = -1;
+    private Team attackerTeam = Team.None;
     private Vector2 direction = Vector2.up;
     private float speed = 10f;
     public float lifetime = 5f;
@@ -21,7 +22,7 @@ public class Projectile : MonoBehaviourPun
     private void Start()
     {
         object[] data = photonView.InstantiationData;
-        if (data != null && data.Length >= 5)
+        if (data != null && data.Length >= 6)
         {
             // data: [ownerActorNumber, dir.x, dir.y, damage, speed]
             ownerActorNumber = (int)data[0];
@@ -29,6 +30,7 @@ public class Projectile : MonoBehaviourPun
             float dy = Convert.ToSingle(data[2]);
             damage = Convert.ToInt32(data[3]);
             speed = Convert.ToSingle(data[4]);
+            attackerTeam = (Team)(int)data[5];
 
             direction = new Vector2(dx, dy).normalized;
         }
@@ -44,11 +46,12 @@ public class Projectile : MonoBehaviourPun
 
         if (other.CompareTag("Player") || other.CompareTag("Enemy"))
         {
-            if (other.gameObject.TryGetComponent(out PhotonView targetPv))
+            if (other.TryGetComponent(out PhotonView targetPv) &&
+                other.TryGetComponent(out Health targetHealth))
             {
-                if (targetPv.OwnerActorNr == ownerActorNumber) return;
+                if (targetHealth.team == attackerTeam) return;
                 
-                targetPv.RPC("RPC_TakeDamage", targetPv.Owner, damage, ownerActorNumber);
+                targetPv.RPC("RPC_TakeDamage", targetPv.Owner, damage, ownerActorNumber, attackerTeam);
 
                 if (photonView.IsMine)
                 {

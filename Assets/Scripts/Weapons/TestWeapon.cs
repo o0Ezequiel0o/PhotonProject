@@ -15,8 +15,13 @@ public class TestWeapon : Weapon
         
         Vector3 spawnPos = transform.position;
         Quaternion spawnRot = transform.rotation;
-        
         Vector2 dir = transform.up.normalized;
+
+        Team shooterTeam = Team.None;
+        if (source.TryGetComponent(out Health sourceHealth))
+        {
+            shooterTeam = sourceHealth.team;
+        }
         
         object[] instantiationData = new object[]
         {
@@ -24,7 +29,8 @@ public class TestWeapon : Weapon
             dir.x,
             dir.y,
             damage,
-            projectileSpeed
+            projectileSpeed,
+            shooterTeam
         };
         
         GameObject proj = PhotonNetwork.Instantiate(projectilePrefabName, spawnPos, spawnRot, 0, instantiationData);
