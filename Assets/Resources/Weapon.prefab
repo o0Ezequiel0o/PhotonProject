@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2833538160625867310}
   - component: {fileID: 2623954449217786900}
   - component: {fileID: 833101842908909012}
-  - component: {fileID: 1773789811760537156}
+  - component: {fileID: 4391348707447438215}
   - component: {fileID: 8543757200304478356}
   m_Layer: 0
   m_Name: Weapon
@@ -142,11 +142,11 @@ MonoBehaviour:
   OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 1773789811760537156}
+  - {fileID: 4391348707447438215}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1773789811760537156
+--- !u!114 &4391348707447438215
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

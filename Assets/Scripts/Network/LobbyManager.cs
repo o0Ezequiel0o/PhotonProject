@@ -15,6 +15,27 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     [SerializeField] private TMP_InputField createInput;
     [SerializeField] private TMP_InputField joinInput;
 
+    [SerializeField] private bool useDummyRoom;
+
+    private bool dummyRoom = true;
+
+    private void Awake()
+    {
+        if (!useDummyRoom)
+        {
+            dummyRoom = false;
+        }
+    }
+
+    private void Start()
+    {
+        if (useDummyRoom)
+        {
+            Debug.Log("created dummy room");
+            PhotonNetwork.CreateRoom("DummyRoom");
+        }
+    }
+
     public void CreateRoom()
     {
         PhotonNetwork.JoinOrCreateRoom(createInput.text, new RoomOptions(), TypedLobby.Default);
@@ -38,6 +59,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        if (dummyRoom)
+        {
+            PhotonNetwork.LeaveRoom();
+            dummyRoom = false;
+            return;
+        }
+
         PhotonNetwork.LoadLevel(lobbyScene);
     }
 

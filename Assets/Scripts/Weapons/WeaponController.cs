@@ -12,20 +12,27 @@ public class WeaponController : MonoBehaviour
     private List<Weapon> weapons = new List<Weapon>();
     public Weapon currentWeapon = null;
 
+    public void InstantiateWeapon(string path)
+    {
+        Weapon weapon = PhotonNetwork.Instantiate(path, grabPosition.position, Quaternion.identity).GetComponent<Weapon>();
+        weapon.transform.parent = grabPosition.transform;
+        weapon.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        weapons.Add(weapon);
+        currentWeapon = weapon;
+
+        weapon.GetComponent<PhotonView>().RPC("RPC_OnEquip", RpcTarget.All, true);
+    }
+
     public bool GrabWeapon(Weapon weapon)
     {
         if (weapon.equipped) return false;
 
         if (currentWeapon != null || weapons.Count >= maxWeapons) return false;
 
-        PhotonView targetPv = weapon.GetComponent<PhotonView>();
+        Destroy(weapon.gameObject);
+        InstantiateWeapon("Weapon");
 
-        targetPv.RPC("RPC_OnEquip", RpcTarget.All, true);
-        weapon.photonView.TransferOwnership(PhotonNetwork.LocalPlayer.ActorNumber);
-
-        currentWeapon = weapon;
-
-        weapon.transform.rotation = Quaternion.identity;
+        //weapon.photonView.TransferOwnership(PhotonNetwork.LocalPlayer.ActorNumber);
         return true;
     }
 
