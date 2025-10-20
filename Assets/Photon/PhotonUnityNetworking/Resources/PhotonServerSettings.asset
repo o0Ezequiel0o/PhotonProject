@@ -39,6 +39,9 @@ MonoBehaviour:
   - RPC_OnDeathAll
   - RPC_TakeDamage
   - RPC_OnEquip
+  - RPC_EquipWeapon
+  - RPC_UnequipCurrent
+  - RPC_DestroyWeapon
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

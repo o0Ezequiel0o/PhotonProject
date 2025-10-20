@@ -1,38 +1,31 @@
 using Photon.Pun;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
+    [SerializeField] List<WeaponSlot> weaponSlots;
     [SerializeField] private Transform grabPosition;
     [SerializeField] private Transform pivot;
     [SerializeField] private PhotonView PhotonView;
-    [SerializeField] private int maxWeapons = 1;
 
-    private List<Weapon> weapons = new List<Weapon>();
     public Weapon currentWeapon = null;
 
-    public void InstantiateWeapon(string path)
+    public bool GrabWeapon(Weapon pickedWeapon)
     {
-        Weapon weapon = PhotonNetwork.Instantiate(path, grabPosition.position, Quaternion.identity).GetComponent<Weapon>();
-        weapon.transform.parent = grabPosition.transform;
-        weapon.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-        weapons.Add(weapon);
+        if (pickedWeapon.equipped) return false;
+
+        if (currentWeapon != null) return false;
+
+        Weapon weapon = GetWeaponInHierarchy(pickedWeapon.Name);
+
         currentWeapon = weapon;
 
-        weapon.GetComponent<PhotonView>().RPC("RPC_OnEquip", RpcTarget.All, true);
-    }
+        weapon.GetComponent<PhotonView>().RPC("RPC_OnEquip", RpcTarget.All, true, "");
+        pickedWeapon.GetComponent<PhotonView>().RPC("RPC_DestroyWeapon", RpcTarget.All);
+        GetComponent<PhotonView>().RPC("RPC_EquipWeapon", RpcTarget.All, weapon.Name);
 
-    public bool GrabWeapon(Weapon weapon)
-    {
-        if (weapon.equipped) return false;
-
-        if (currentWeapon != null || weapons.Count >= maxWeapons) return false;
-
-        Destroy(weapon.gameObject);
-        InstantiateWeapon("Weapon");
-
-        //weapon.photonView.TransferOwnership(PhotonNetwork.LocalPlayer.ActorNumber);
         return true;
     }
 
@@ -42,5 +35,44 @@ public class WeaponController : MonoBehaviour
 
         currentWeapon.transform.position = grabPosition.position;
         currentWeapon.transform.rotation = pivot.rotation;
+    }
+
+    private Weapon GetWeaponInHierarchy(string weapon)
+    {
+        foreach (Transform children in grabPosition.transform)
+        {
+            Debug.Log(children.name);
+            if (children.name == weapon)
+            {
+                return children.GetComponent<Weapon>();
+            }
+        }
+
+        return null;
+    }
+
+    [PunRPC]
+    public void RPC_EquipWeapon(string weapon)
+    {
+        Debug.Log(weapon);
+
+        foreach (Transform children in grabPosition.transform)
+        {
+            Debug.Log(children.name);
+            if (children.name == weapon)
+            {
+                children.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    [PunRPC]
+    public void RPC_UnequipCurrent() { }
+
+    [Serializable]
+    public struct WeaponSlot
+    {
+        [SerializeField] private string name;
+        [SerializeField] private GameObject weapon;
     }
 }

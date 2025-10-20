@@ -26,6 +26,7 @@ public class ShootInput : MonoBehaviour
     void Update()
     {
         if (!photonView.IsMine) return;
+
         if (weaponController == null || weaponController.currentWeapon == null) return;
 
         fireCooldown -= Time.deltaTime;
