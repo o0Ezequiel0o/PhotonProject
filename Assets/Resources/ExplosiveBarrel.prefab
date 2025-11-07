@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4517123355684924939}
   - component: {fileID: 1452490713692372583}
   - component: {fileID: 8934881194125455961}
+  - component: {fileID: 8385321463624783671}
   m_Layer: 0
   m_Name: ExplosiveBarrel
   m_TagString: Enemy
@@ -176,3 +177,16 @@ MonoBehaviour:
   explosionDamage: 30
   explosionRange: 3
   destroyObject: 1
+--- !u!114 &8385321463624783671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708614346826766887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee7f4dd6248ad274b81f7db8fc51d1a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles: {fileID: 2320869808705892121, guid: 72bc5f8673a41a74a830b73386c6f6ec, type: 3}

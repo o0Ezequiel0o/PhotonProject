@@ -547,6 +547,7 @@ GameObject:
   - component: {fileID: 5806886909128924859}
   - component: {fileID: 4609179597090425422}
   - component: {fileID: 8569627851071677707}
+  - component: {fileID: 1476189497767067508}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -830,6 +831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ef07f7dcdac3145a64cd5c8a313c70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: -3216321836333571712}
   photonView: {fileID: 6371052916873527321}
   interactionHandler: {fileID: 6409433004738465764}
 --- !u!114 &3416507114737062984
@@ -850,6 +852,7 @@ MonoBehaviour:
   grabPosition: {fileID: 7641303231715402580}
   pivot: {fileID: 6373747556651119217}
   photonView: {fileID: 6371052916873527321}
+  player: {fileID: -3216321836333571712}
   currentWeapon: {fileID: 0}
 --- !u!114 &6948551516877966212
 MonoBehaviour:
@@ -863,6 +866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e4b977ec90059347a109089575b2998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: -3216321836333571712}
   photonView: {fileID: 6371052916873527321}
   weaponController: {fileID: 3416507114737062984}
   fireOrigin: {fileID: 7641303231715402580}
@@ -919,6 +923,19 @@ MonoBehaviour:
   reviveTime: 5
   stopRevivingDistance: 3
   IsDowned: 0
+--- !u!114 &1476189497767067508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5544723070002177578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e297d3e4e268235408793598267f901e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles: {fileID: 8344018131316160604, guid: 8e87a1c55e85fd2419cbec11431b8303, type: 3}
 --- !u!1 &6242593214637280706
 GameObject:
   m_ObjectHideFlags: 0

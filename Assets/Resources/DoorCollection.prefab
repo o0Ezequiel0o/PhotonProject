@@ -180,6 +180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1835309849728742455}
   - component: {fileID: 1903114543524409476}
+  - component: {fileID: 8892025955164887289}
   - component: {fileID: 5089581435268726134}
   - component: {fileID: 6044736721032822829}
   m_Layer: 0
@@ -256,6 +257,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8892025955164887289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684938889675310018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!114 &5089581435268726134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,6 +291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7be94cc9d5394c4b87bf039ee6b6406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1903114543524409476}
+  durationTime: 5
 --- !u!58 &6044736721032822829
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -347,6 +372,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9208240799614578988}
   - component: {fileID: 657671558757061564}
+  - component: {fileID: 8189853146401731391}
   - component: {fileID: 8647576115335975637}
   - component: {fileID: 8632045496991172755}
   m_Layer: 0
@@ -423,6 +449,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8189853146401731391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6418587275476446890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!114 &8647576115335975637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,6 +483,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7be94cc9d5394c4b87bf039ee6b6406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 657671558757061564}
+  durationTime: 5
 --- !u!58 &8632045496991172755
 CircleCollider2D:
   m_ObjectHideFlags: 0

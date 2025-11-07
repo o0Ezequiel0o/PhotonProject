@@ -53,6 +53,10 @@ MonoBehaviour:
   - RPC_UpdateHealthBar
   - RPC_TakeDamageAny
   - RPC_TriggerExplosion
+  - RPC_HideWeapon
+  - RPC_ShowWeapon
+  - RPC_TurnOff
+  - RPC_TurnOn
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

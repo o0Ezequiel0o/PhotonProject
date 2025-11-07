@@ -6,6 +6,7 @@ using UnityEngine;
 public class ShootInput : MonoBehaviour
 {
     [Header("Dependency")]
+    [SerializeField] private Player player;
     [SerializeField] private PhotonView photonView;
     [SerializeField] private WeaponController weaponController;
     [SerializeField] private Transform fireOrigin;
@@ -26,6 +27,7 @@ public class ShootInput : MonoBehaviour
     void Update()
     {
         if (!photonView.IsMine) return;
+        if (player.IsDowned) return;
 
         if (weaponController == null || weaponController.currentWeapon == null) return;
 

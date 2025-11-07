@@ -9,6 +9,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private Transform grabPosition;
     [SerializeField] private Transform pivot;
     [SerializeField] private PhotonView photonView;
+    [SerializeField] private Player player;
 
     public Weapon currentWeapon = null;
 
@@ -36,6 +37,15 @@ public class WeaponController : MonoBehaviour
     {
         if (currentWeapon == null) return;
 
+        if (player.IsDowned) //use events instead of constantly sending info
+        {
+            photonView.RPC("RPC_HideWeapon", RpcTarget.AllBuffered, currentWeapon.Name);
+        }
+        else
+        {
+            photonView.RPC("RPC_ShowWeapon", RpcTarget.AllBuffered, currentWeapon.Name);
+        }
+
         currentWeapon.transform.position = grabPosition.position;
         currentWeapon.transform.rotation = pivot.rotation;
     }
@@ -52,6 +62,30 @@ public class WeaponController : MonoBehaviour
         }
 
         return null;
+    }
+
+    [PunRPC]
+    public void RPC_HideWeapon(string weapon)
+    {
+        foreach (Transform children in grabPosition.transform)
+        {
+            if (children.name == weapon)
+            {
+                children.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    [PunRPC]
+    public void RPC_ShowWeapon(string weapon)
+    {
+        foreach (Transform children in grabPosition.transform)
+        {
+            if (children.name == weapon)
+            {
+                children.gameObject.SetActive(true);
+            }
+        }
     }
 
     [PunRPC]

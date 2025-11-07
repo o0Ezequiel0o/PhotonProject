@@ -58,6 +58,15 @@ public class Projectile : MonoBehaviourPun
                     PhotonNetwork.Destroy(gameObject);
                 }
             }
-        }    
+        }
+
+        else if (other.CompareTag("Obstacle"))
+        {
+            if (photonView.IsMine)
+            {
+                PhotonNetwork.Instantiate("ObstacleHitEffect", transform.position, Quaternion.identity);
+                PhotonNetwork.Destroy(gameObject);
+            }
+        }
     }
 }
