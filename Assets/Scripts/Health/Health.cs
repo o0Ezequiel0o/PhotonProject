@@ -6,12 +6,15 @@ using UnityEngine;
 
 public class Health : MonoBehaviourPun
 {
+    [SerializeField] private bool destroyOnDeath = true;
+
     public float maxHp = 100f;
     public float currentHp;
 
     public Team team = Team.None;
 
     public Action onDamageTaken;
+    public Action onDeath;
 
     public float Percentage => currentHp / maxHp;
 
@@ -29,6 +32,12 @@ public class Health : MonoBehaviourPun
     }
 
     [PunRPC]
+    public void RPC_UpdateHealth(int newValue)
+    {
+        currentHp = Mathf.Min(newValue, maxHp);
+    }
+
+    [PunRPC]
     public void RPC_TakeDamage(int amount, int attackerActorNumber, Team attackerTeam)
     {
         //if (attackerTeam == team) return;
@@ -40,7 +49,33 @@ public class Health : MonoBehaviourPun
 
         if (currentHp <= 0)
         {
-            Die(attackerActorNumber);
+            if (destroyOnDeath)
+            {
+                Die(attackerActorNumber);
+            }
+            onDeath?.Invoke();
+        }
+    }
+
+    [PunRPC]
+    public void RPC_TakeDamageAny(int amount)
+    {
+        //if (attackerTeam == team) return;
+
+        int attackerActorNumber = 0;
+
+        currentHp -= amount;
+        Debug.Log($"{gameObject.name} ({team}) took {amount} dmg from Actor {attackerActorNumber}. HP now: {currentHp}");
+
+        onDamageTaken?.Invoke();
+
+        if (currentHp <= 0)
+        {
+            if (destroyOnDeath)
+            {
+                photonView.RPC("RPC_OnDeathAll", RpcTarget.AllBuffered, attackerActorNumber);
+            }
+            onDeath?.Invoke();
         }
     }
 

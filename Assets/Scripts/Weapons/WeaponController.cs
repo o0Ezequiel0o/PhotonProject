@@ -8,7 +8,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] List<WeaponSlot> weaponSlots;
     [SerializeField] private Transform grabPosition;
     [SerializeField] private Transform pivot;
-    [SerializeField] private PhotonView PhotonView;
+    [SerializeField] private PhotonView photonView;
 
     public Weapon currentWeapon = null;
 
@@ -22,9 +22,12 @@ public class WeaponController : MonoBehaviour
 
         currentWeapon = weapon;
 
-        weapon.GetComponent<PhotonView>().RPC("RPC_OnEquip", RpcTarget.All, true, "");
-        pickedWeapon.GetComponent<PhotonView>().RPC("RPC_DestroyWeapon", RpcTarget.All);
-        GetComponent<PhotonView>().RPC("RPC_EquipWeapon", RpcTarget.All, weapon.Name);
+        PhotonView weaponPV = weapon.GetComponent<PhotonView>();
+        PhotonView pickedWeaponPV = pickedWeapon.GetComponent<PhotonView>();
+
+        weaponPV.RPC("RPC_OnEquip", RpcTarget.All, true, "");
+        pickedWeaponPV.RPC("RPC_DestroyWeapon", RpcTarget.All);
+        photonView.RPC("RPC_EquipWeapon", RpcTarget.All, weapon.Name);
 
         return true;
     }
@@ -54,11 +57,8 @@ public class WeaponController : MonoBehaviour
     [PunRPC]
     public void RPC_EquipWeapon(string weapon)
     {
-        Debug.Log(weapon);
-
         foreach (Transform children in grabPosition.transform)
         {
-            Debug.Log(children.name);
             if (children.name == weapon)
             {
                 children.gameObject.SetActive(true);

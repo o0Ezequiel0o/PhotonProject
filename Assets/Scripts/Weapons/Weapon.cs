@@ -30,7 +30,7 @@ public abstract class Weapon : MonoBehaviourPun, IInteractable
     }
 
     [PunRPC]
-    public void RPC_DestroyWeapon(bool equipped, string weapon)
+    public void RPC_DestroyWeapon()
     {
         Destroy(gameObject);
     }

@@ -42,6 +42,17 @@ MonoBehaviour:
   - RPC_EquipWeapon
   - RPC_UnequipCurrent
   - RPC_DestroyWeapon
+  - RPC_OpenDoor
+  - UpdateHealth
+  - RPC_GoDowned
+  - ReviveCoroutine
+  - RPC_Revive
+  - RPC_UpdateHealth
+  - RPC_DestroyBar
+  - RPC_StartBar
+  - RPC_UpdateHealthBar
+  - RPC_TakeDamageAny
+  - RPC_TriggerExplosion
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
