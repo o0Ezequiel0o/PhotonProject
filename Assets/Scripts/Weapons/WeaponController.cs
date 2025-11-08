@@ -13,6 +13,8 @@ public class WeaponController : MonoBehaviour
 
     public Weapon currentWeapon = null;
 
+    public event Action OnWeaponChanged;
+
     public bool GrabWeapon(Weapon pickedWeapon)
     {
         if (pickedWeapon.equipped) return false;
@@ -29,6 +31,8 @@ public class WeaponController : MonoBehaviour
         weaponPV.RPC("RPC_OnEquip", RpcTarget.All, true, "");
         pickedWeaponPV.RPC("RPC_DestroyWeapon", RpcTarget.All);
         photonView.RPC("RPC_EquipWeapon", RpcTarget.All, weapon.Name);
+        
+        OnWeaponChanged?.Invoke();
 
         return true;
     }

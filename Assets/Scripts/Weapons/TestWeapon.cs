@@ -13,6 +13,15 @@ public class TestWeapon : Weapon
             return;
         }
         
+        if (source.TryGetComponent(out AmmoInventory ammoInv))
+        {
+            if (!ammoInv.ConsumeAmmo(ammoType, ammoPerShot))
+            {
+                Debug.Log("No ammo!");
+                return;
+            }
+        }
+        
         Vector3 spawnPos = transform.position;
         Quaternion spawnRot = transform.rotation;
         Vector2 dir = transform.up.normalized;

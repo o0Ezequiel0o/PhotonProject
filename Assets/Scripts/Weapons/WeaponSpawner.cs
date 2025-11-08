@@ -9,6 +9,6 @@ public class WeaponSpawner : MonoBehaviour
     {
         if (!LocalInstance.isHost) return;
 
-        PhotonNetwork.Instantiate("Weapon", spawnPosition.position, Quaternion.identity);
+        PhotonNetwork.Instantiate("Shotgun", spawnPosition.position, Quaternion.identity);
     }
 }

@@ -57,6 +57,7 @@ MonoBehaviour:
   - RPC_ShowWeapon
   - RPC_TurnOff
   - RPC_TurnOn
+  - RPC_SyncAmmo
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

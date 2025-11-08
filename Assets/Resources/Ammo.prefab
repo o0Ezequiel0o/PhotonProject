@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2623954449217786900}
   - component: {fileID: 833101842908909012}
   - component: {fileID: 4391348707447438215}
-  - component: {fileID: 8543757200304478356}
+  - component: {fileID: -470152840363516465}
   m_Layer: 0
-  m_Name: Weapon
+  m_Name: Ammo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!114 &8543757200304478356
+--- !u!114 &-470152840363516465
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,14 +188,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1938863215030385662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06df2b4ad7dbc2e419115429b29cbdd5, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a0a1bb0bc06976429064954508a5c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Weapon
-  icon: {fileID: 4072495594464800298, guid: 601e5d3391a258e47a37f47aa1033f07, type: 3}
-  equipped: 0
-  projectilePrefabName: Bullet
-  projectileSpeed: 10
-  damage: 10
   ammoType: 0
-  ammoPerShot: 1
+  amount: 10

@@ -5,11 +5,16 @@ public abstract class Weapon : MonoBehaviourPun, IInteractable
 {
     public string Name = "";
 
+    public Sprite icon;
+
     public bool equipped = false;
     
     public string projectilePrefabName = "";
     public float projectileSpeed = 10f;
     public int damage = 10;
+    
+    public AmmoType ammoType = AmmoType.Default;
+    public int ammoPerShot = 1;
 
     public virtual void Fire(GameObject source) { }
 

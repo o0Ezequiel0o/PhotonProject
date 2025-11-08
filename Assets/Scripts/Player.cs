@@ -30,6 +30,12 @@ public class Player : MonoBehaviour
         if (gameObject.GetPhotonView().IsMine)
         {
             FindFirstObjectByType<CinemachineVirtualCamera>().Follow = transform;
+            AmmoUI ui = FindObjectOfType<AmmoUI>();
+
+            if (ui != null)
+            {
+                ui.Initialize(GetComponent<AmmoInventory>(), GetComponent<WeaponController>());
+            }
         }
     }
 }
