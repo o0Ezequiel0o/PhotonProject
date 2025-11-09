@@ -14,6 +14,7 @@ public class Health : MonoBehaviourPun
     public Team team = Team.None;
 
     public Action onDamageTaken;
+    public Action onHealthChanged;
     public Action onDeath;
 
     public float Percentage => currentHp / maxHp;
@@ -35,6 +36,7 @@ public class Health : MonoBehaviourPun
     public void RPC_UpdateHealth(int newValue)
     {
         currentHp = Mathf.Min(newValue, maxHp);
+        onHealthChanged?.Invoke();
     }
 
     [PunRPC]

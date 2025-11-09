@@ -14,6 +14,7 @@ public class HealthbarHandler : MonoBehaviour
         if (TryGetComponent(out health))
         {
             health.onDamageTaken += UpdateHealthBar;
+            health.onHealthChanged += UpdateHealthBar;
         }
     }
 
