@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TestWeapon : Weapon
 {
-    public override void Fire(GameObject source)
+    protected override void PerformShoot(GameObject source)
     {
         if (string.IsNullOrEmpty(projectilePrefabName))
         {

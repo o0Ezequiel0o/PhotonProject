@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2623954449217786900}
   - component: {fileID: 833101842908909012}
   - component: {fileID: 4391348707447438215}
-  - component: {fileID: -8005021800214734830}
+  - component: {fileID: 8543757200304478356}
   m_Layer: 0
-  m_Name: Shotgun
+  m_Name: Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObservedComponentsFoldoutOpen: 1
   Group: 0
-  prefixField: 0
+  prefixField: -1
   Synchronization: 3
   OwnershipTransfer: 1
   observableSearch: 2
@@ -179,7 +179,7 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
---- !u!114 &-8005021800214734830
+--- !u!114 &8543757200304478356
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,18 +188,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1938863215030385662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab1309495824ca447bac9f9f3fd1b5d3, type: 3}
+  m_Script: {fileID: 11500000, guid: 06df2b4ad7dbc2e419115429b29cbdd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Shotgun
+  Name: Rifle
   icon: {fileID: 4072495594464800298, guid: 601e5d3391a258e47a37f47aa1033f07, type: 3}
   equipped: 0
   projectilePrefabName: Bullet
   projectileSpeed: 20
-  damage: 10
-  fireRate: 3
+  damage: 6
+  fireRate: 15
   ammoType: 0
   ammoPerShot: 1
-  pelletCount: 5
-  spreadAngle: 25
-  recoilForce: 2

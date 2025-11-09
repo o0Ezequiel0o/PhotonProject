@@ -10,7 +10,7 @@ public class Shotgun : Weapon
     public float spreadAngle = 15f;     
     public float recoilForce = 2f; 
     
-    public override void Fire(GameObject source)
+    protected override void PerformShoot(GameObject source)
     {
         if (string.IsNullOrEmpty(projectilePrefabName))
         {
