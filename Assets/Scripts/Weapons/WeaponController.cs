@@ -17,55 +17,24 @@ public class WeaponController : MonoBehaviour
 
     public bool GrabWeapon(Weapon pickedWeapon)
     {
-        if (!photonView.IsMine) return false; // solo el jugador local puede equipar
         if (pickedWeapon.equipped) return false;
+
         if (currentWeapon != null) return false;
 
-        // Buscar el arma equivalente dentro del prefab local del jugador
         Weapon weapon = GetWeaponInHierarchy(pickedWeapon.Name);
-        if (weapon == null)
-        {
-            Debug.LogWarning($"No se encontró el arma {pickedWeapon.Name} en el jugador local.");
-            return false;
-        }
 
-        // Marcarla como equipada localmente
         currentWeapon = weapon;
-        currentWeapon.gameObject.SetActive(true);
-        currentWeapon.equipped = true;
 
-        // Destruir el arma física del mapa (pickup)
-        if (pickedWeapon.photonView != null && pickedWeapon.photonView.IsMine)
-        {
-            pickedWeapon.photonView.RPC("RPC_DestroyWeapon", RpcTarget.AllBuffered);
-        }
-        else
-        {
-            PhotonNetwork.Destroy(pickedWeapon.gameObject);
-        }
+        PhotonView weaponPV = weapon.GetComponent<PhotonView>();
+        PhotonView pickedWeaponPV = pickedWeapon.GetComponent<PhotonView>();
 
-        // Sincronizar el arma seleccionada con los demás jugadores
-        photonView.RPC(nameof(RPC_SetEquippedWeapon), RpcTarget.AllBuffered, weapon.Name);
-
+        weaponPV.RPC("RPC_OnEquip", RpcTarget.All, true, "");
+        pickedWeaponPV.RPC("RPC_DestroyWeapon", RpcTarget.All);
+        photonView.RPC("RPC_EquipWeapon", RpcTarget.All, weapon.Name);
+        
         OnWeaponChanged?.Invoke();
 
         return true;
-    }
-    
-    [PunRPC]
-    private void RPC_SetEquippedWeapon(string weaponName)
-    {
-        Weapon weapon = GetWeaponInHierarchy(weaponName);
-        if (weapon == null) return;
-
-        if (currentWeapon != null)
-            currentWeapon.gameObject.SetActive(false);
-
-        currentWeapon = weapon;
-        currentWeapon.gameObject.SetActive(true);
-        currentWeapon.equipped = true;
-
-        OnWeaponChanged?.Invoke();
     }
 
     private void Update()

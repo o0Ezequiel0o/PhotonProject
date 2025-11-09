@@ -58,10 +58,6 @@ MonoBehaviour:
   - RPC_TurnOff
   - RPC_TurnOn
   - RPC_SyncAmmo
-  - RPC_OpenCrateFX
-  - RPC_RequestOpen
-  - RPC_SetEquippedWeapon
-  - RPC_DestroyCrate
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
