@@ -71,7 +71,7 @@ public class DoorButton : MonoBehaviour
     [PunRPC]
     private void RPC_TurnOff()
     {
-        spriteRenderer.color = Color.red;
+        spriteRenderer.color = Color.white;
         timerStarted = false;
         durationTimer = 0f;
         Active = false;
