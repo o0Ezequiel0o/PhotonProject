@@ -6,6 +6,13 @@ TagManager:
   tags:
   - Enemy
   - Obstacle
+  - UIManager
+  - GameManager
+  - ReloadUI
+  - CrateSpawnPoints
+  - HealthBar
+  - WaveManager
+  - Solid
   layers:
   - Default
   - TransparentFX
@@ -42,4 +49,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 2136681183
     locked: 0
