@@ -38,7 +38,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void CreateRoom()
     {
-        PhotonNetwork.JoinOrCreateRoom(createInput.text, new RoomOptions(), TypedLobby.Default);
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.CleanupCacheOnLeave = false;
+
+        PhotonNetwork.JoinOrCreateRoom(createInput.text, roomOptions, TypedLobby.Default);
     }
 
     public void JoinRoom(string roomName)

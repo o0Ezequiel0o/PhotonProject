@@ -8,7 +8,7 @@ public class WeaponSpawner : MonoBehaviour
 
     private void Start()
     {
-        if (!LocalInstance.isHost) return;
+        if (!PhotonNetwork.IsMasterClient) return;
 
         PhotonNetwork.Instantiate(weaponName, spawnPosition.position, Quaternion.identity);
     }

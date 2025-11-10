@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using Photon.Pun;
 
 public class SimpleFollowPath : MonoBehaviour, IPathFollower
 {
@@ -77,7 +78,7 @@ public class SimpleFollowPath : MonoBehaviour, IPathFollower
 
     void Update()
     {
-        if (!LocalInstance.isHost) return;
+        if (!PhotonNetwork.IsMasterClient) return;
 
         if (pathCanceled)
         {

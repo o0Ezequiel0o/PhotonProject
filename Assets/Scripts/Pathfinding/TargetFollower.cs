@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 
 [RequireComponent(typeof(IPathFollower))]
@@ -19,7 +20,7 @@ public class TargetFollower : TargetFollowerBase
 
     void Update()
     {
-        if (!LocalInstance.isHost) return;
+        if (!PhotonNetwork.IsMasterClient) return;
 
         UpdateTargetPosition();
 

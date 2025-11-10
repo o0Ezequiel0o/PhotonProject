@@ -15,7 +15,7 @@ public class ZombieSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (!LocalInstance.isHost) return;
+        if (!PhotonNetwork.IsMasterClient) return;
 
         timeSinceStart += Time.deltaTime;
         timer += Time.deltaTime;
