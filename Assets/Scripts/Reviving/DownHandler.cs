@@ -78,6 +78,7 @@ public class DownHandler : MonoBehaviour, IInteractable
     private void Revive()
     {
         photonView.RPC("RPC_Revive", RpcTarget.All);
+        photonView.RPC("RPC_UpdateHealth", RpcTarget.All, 100);
 
         if (reviveBarInstance != null)
         reviveBarInstance.GetPhotonView().RPC("RPC_DestroyBar", RpcTarget.All);
@@ -97,8 +98,6 @@ public class DownHandler : MonoBehaviour, IInteractable
         {
             entityMove.moveSpeed.RemoveMultiplier(downedSpeedMultiplier);
         }
-
-        photonView.RPC("RPC_UpdateHealth", RpcTarget.All, 100);
 
         foreach (GameObject go in partsToHide)
         {

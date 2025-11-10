@@ -13,7 +13,7 @@ public class Door : MonoBehaviour
     {
         if (!opened && CanOpen())
         {
-            RPC_OpenDoor();
+            photonView.RPC("RPC_OpenDoor", RpcTarget.AllBuffered);
         }
     }
 

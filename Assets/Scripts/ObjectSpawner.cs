@@ -9,9 +9,11 @@ public class ObjectSpawner : MonoBehaviour
 
     void Awake()
     {
+        if (!PhotonNetwork.IsMasterClient) return;
+
         foreach(Spawnable thingToSpawn in spawn)
         {
-            PhotonNetwork.Instantiate(thingToSpawn.name, thingToSpawn.position, Quaternion.identity);
+            PhotonNetwork.InstantiateRoomObject(thingToSpawn.name, thingToSpawn.position, Quaternion.identity);
         }
     }
 
