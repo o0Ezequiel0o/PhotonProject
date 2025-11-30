@@ -18,12 +18,15 @@ public class DownHandler : MonoBehaviour, IInteractable
     private bool beingRevived = false;
     private Player reviver = null;
 
-    private StatMultiplier downedSpeedMultiplier = new StatMultiplier(0.5f);
+    private StatMultiplier downedSpeedMultiplier = new StatMultiplier(0f);
+    private StatMultiplier revivingSpeedMultiplier = new StatMultiplier(1f);
     private Sprite originalSprite;
 
     private GameObject reviveBarInstance;
 
     private Coroutine reviveCoroutine;
+
+    private StatMultiplier zeroMultiplier = new StatMultiplier(0f);
 
     public bool Interact(GameObject source)
     {
@@ -60,8 +63,10 @@ public class DownHandler : MonoBehaviour, IInteractable
     {
         reviveBarInstance = PhotonNetwork.Instantiate("ReviveBar", transform.position, Quaternion.identity);
         reviveBarInstance.GetPhotonView().RPC("RPC_StartBar", RpcTarget.All, reviveTime);
+        reviver.gameObject.GetPhotonView().RPC("RPC_StartRevive", RpcTarget.All);
         Debug.Log("start reviving");
         yield return new WaitForSeconds(reviveTime);
+        reviver.gameObject.GetPhotonView().RPC("RPC_EndRevive", RpcTarget.All);
         Revive();
     }
 
@@ -70,6 +75,11 @@ public class DownHandler : MonoBehaviour, IInteractable
         if (TryGetComponent(out Health health))
         {
             health.onDeath += GoDowned;
+        }
+
+        if (TryGetComponent(out EntityMove entityMove))
+        {
+            entityMove.moveSpeed.AddMultiplier(revivingSpeedMultiplier);
         }
 
         originalSprite = spriteRenderer.sprite;
@@ -87,6 +97,18 @@ public class DownHandler : MonoBehaviour, IInteractable
     private void GoDowned()
     {
         photonView.RPC("RPC_GoDowned", RpcTarget.All);
+    }
+
+    [PunRPC]
+    private void RPC_StartRevive()
+    {
+        revivingSpeedMultiplier.UpdateMultiplier(0f);
+    }
+
+    [PunRPC]
+    private void RPC_EndRevive()
+    {
+        revivingSpeedMultiplier.UpdateMultiplier(1f);
     }
 
     [PunRPC]
