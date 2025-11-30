@@ -19,6 +19,8 @@ public class Health : MonoBehaviourPun
 
     public float Percentage => currentHp / maxHp;
 
+    private bool isAlive = true;
+
     private void Reset()
     {
         currentHp = maxHp;
@@ -49,13 +51,14 @@ public class Health : MonoBehaviourPun
 
         onDamageTaken?.Invoke();
 
-        if (currentHp <= 0)
+        if (currentHp <= 0 && isAlive)
         {
             if (destroyOnDeath)
             {
                 Die(attackerActorNumber);
             }
             onDeath?.Invoke();
+            isAlive = false;
         }
     }
 
