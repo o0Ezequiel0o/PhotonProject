@@ -15,6 +15,8 @@ public class ZombieAttack : MonoBehaviour
 
     private void Update()
     {
+        if (!PhotonNetwork.IsMasterClient) return;
+        
         if (Attacking)
         {
             timer += Time.deltaTime;

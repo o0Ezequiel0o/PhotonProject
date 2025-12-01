@@ -66,6 +66,7 @@ MonoBehaviour:
   - RPC_StartRevive
   - RPC_IncreaseKillCount
   - RPC_GameOver
+  - RPC_RequestDestroyPickup
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
