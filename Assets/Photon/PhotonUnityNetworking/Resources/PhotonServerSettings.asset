@@ -64,6 +64,7 @@ MonoBehaviour:
   - RPC_DestroyCrate
   - RPC_EndRevive
   - RPC_StartRevive
+  - RPC_IncreaseKillCount
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
