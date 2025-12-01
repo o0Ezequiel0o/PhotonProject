@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LocalGameOverController : MonoBehaviour
@@ -16,6 +13,9 @@ public class LocalGameOverController : MonoBehaviour
 
     public void ShowGameOverScreen()
     {
-        if (gameOverCanvas != null) gameOverCanvas.SetActive(true);
+        if (gameOverCanvas != null)
+        {
+            gameOverCanvas.SetActive(true);
+        }
     }
 }

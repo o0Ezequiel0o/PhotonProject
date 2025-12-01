@@ -7,6 +7,7 @@ using UnityEngine;
 public class GameOverController : MonoBehaviourPunCallbacks
 {
     public static GameOverController Instance;
+    public Action onGameOver;
 
     private void Awake()
     {
@@ -45,5 +46,6 @@ public class GameOverController : MonoBehaviourPunCallbacks
     void RPC_GameOver()
     {
         LocalGameOverController.Instance.ShowGameOverScreen();
+        onGameOver?.Invoke();
     }
 }
