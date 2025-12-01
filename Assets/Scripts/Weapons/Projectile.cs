@@ -51,9 +51,12 @@ public class Projectile : MonoBehaviourPun
             {
                 //if (targetHealth.team == attackerTeam) return;
 
-                if (targetPv.Owner.ActorNumber == ownerActorNumber) return;
+                if (other.CompareTag("Player"))
+                {
+                    if (targetPv.Owner.ActorNumber == ownerActorNumber) return;
+                }
                 
-                targetPv.RPC("RPC_TakeDamage", RpcTarget.All, damage, ownerActorNumber, attackerTeam);
+                targetPv.RPC("RPC_TakeDamage", RpcTarget.AllBuffered, damage, ownerActorNumber, attackerTeam);
 
                 if (photonView.IsMine)
                 {
