@@ -105,10 +105,17 @@ public class WeaponCrate : MonoBehaviourPun, IInteractable
     [PunRPC]
     private void RPC_DestroyCrate()
     {
-        if (photonView != null && photonView.IsMine)
+        // if (photonView != null && photonView.IsMine)
+        //     PhotonNetwork.Destroy(gameObject);
+        // else
+        //     Destroy(gameObject);
+
+        if (!PhotonNetwork.IsMasterClient) return;
+
+        if (photonView.IsMine)
+        {
             PhotonNetwork.Destroy(gameObject);
-        else
-            Destroy(gameObject);
+        }
     }
     
     [PunRPC]

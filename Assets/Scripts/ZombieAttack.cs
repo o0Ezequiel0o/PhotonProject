@@ -40,10 +40,23 @@ public class ZombieAttack : MonoBehaviour
 
             if (hit.collider.TryGetComponent(out Player player) && hit.collider.TryGetComponent(out Health health))
             {
-                hit.collider.gameObject.GetPhotonView().RPC("RPC_TakeDamageAny", RpcTarget.AllBuffered, damage);
+                // hit.collider.gameObject.GetPhotonView().RPC("RPC_TakeDamageAny", RpcTarget.AllBuffered, damage);
+                // entityMove.moveSpeed.AddMultiplier(attackMoveSpeedMultiplier);
+                // Attacking = true;
+                // timer = 0f;
+
+                if (player.IsDowned)
+                {
+                    continue;
+                }
+
+                health.photonView.RPC("RPC_TakeDamageAny", RpcTarget.All, damage);
+                
                 entityMove.moveSpeed.AddMultiplier(attackMoveSpeedMultiplier);
                 Attacking = true;
                 timer = 0f;
+
+                break;
             }
         }
     }

@@ -665,9 +665,9 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5544723070002177578}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 50
+  m_SortingLayerID: 2136681183
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_SortAtRoot: 0
 --- !u!50 &-4356146055413737725
 Rigidbody2D:
