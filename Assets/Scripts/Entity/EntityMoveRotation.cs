@@ -1,3 +1,4 @@
+using Photon.Pun;
 using UnityEngine;
 
 public class EntityMoveRotation : EntityMove
@@ -18,7 +19,10 @@ public class EntityMoveRotation : EntityMove
 
     void FixedUpdate()
     {
-        UpdateMovement();
+        if (PhotonNetwork.IsMasterClient)
+        {
+            UpdateMovement();
+        }
     }
 
     void UpdateMovement()

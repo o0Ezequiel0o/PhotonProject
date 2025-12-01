@@ -35,14 +35,17 @@ public class WeaponController : MonoBehaviour
         currentWeapon.equipped = true;
 
         // Destruir el arma física del mapa (pickup)
-        if (pickedWeapon.photonView != null && pickedWeapon.photonView.IsMine)
-        {
-            pickedWeapon.photonView.RPC("RPC_DestroyWeapon", RpcTarget.AllBuffered);
-        }
-        else
-        {
-            PhotonNetwork.Destroy(pickedWeapon.gameObject);
-        }
+        // if (pickedWeapon.photonView != null && pickedWeapon.photonView.IsMine)
+        // {
+        //     pickedWeapon.photonView.RPC("RPC_DestroyWeapon", RpcTarget.AllBuffered);
+        // }
+        // else
+        // {
+        //     PhotonNetwork.Destroy(pickedWeapon.gameObject);
+        // }
+        
+        PhotonView master = PhotonNetwork.MasterClient.TagObject as PhotonView;
+        photonView.RPC("RPC_RequestDestroyPickup", RpcTarget.MasterClient, pickedWeapon.photonView.ViewID);
 
         // Sincronizar el arma seleccionada con los demás jugadores
         photonView.RPC(nameof(RPC_SetEquippedWeapon), RpcTarget.AllBuffered, weapon.Name);
@@ -66,6 +69,16 @@ public class WeaponController : MonoBehaviour
         currentWeapon.equipped = true;
 
         OnWeaponChanged?.Invoke();
+    }
+
+    [PunRPC]
+    public void RPC_RequestDestroyPickup(int viewID)
+    {
+        PhotonView target = PhotonView.Find(viewID);
+        if (target != null)
+        {
+            PhotonNetwork.Destroy(target.gameObject);
+        }
     }
 
     private void Update()
