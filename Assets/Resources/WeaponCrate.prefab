@@ -123,7 +123,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5, y: 2.5}
+    oldSize: {x: 1.6666666, y: 1.6666666}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -171,5 +171,5 @@ MonoBehaviour:
   - Rifle
   - Shotgun
   ammoRewardOnDuplicate: 200
-  openEffect: {fileID: 0}
+  openEffect: {fileID: 6815406487977193087, guid: cf4f96a5119b38a40893a2faef455590, type: 3}
   openSound: {fileID: 0}

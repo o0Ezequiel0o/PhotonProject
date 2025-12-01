@@ -50,6 +50,8 @@ public class Projectile : MonoBehaviourPun
                 other.TryGetComponent(out Health targetHealth))
             {
                 //if (targetHealth.team == attackerTeam) return;
+
+                if (targetPv.Owner.ActorNumber == ownerActorNumber) return;
                 
                 targetPv.RPC("RPC_TakeDamage", RpcTarget.All, damage, ownerActorNumber, attackerTeam);
 

@@ -8,4 +8,15 @@ public class SceneController : MonoBehaviour
     {
         PhotonNetwork.LoadLevel(scene);
     }
+
+    public void OnExitButtonPressed()
+    {
+        if (PhotonNetwork.IsConnectedAndReady)
+        {
+            PhotonNetwork.LeaveRoom();
+            PhotonNetwork.Disconnect();
+        }
+        
+        PhotonNetwork.LoadLevel("LoadingScreen");
+    }
 }

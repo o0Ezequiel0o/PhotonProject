@@ -18,16 +18,13 @@ public class WeaponCrate : MonoBehaviourPun, IInteractable
     
     public bool Interact(GameObject source)
     {
-        // 🔸 Prevención de doble uso
         if (isOpened) return false;
 
         if (!source.TryGetComponent(out WeaponController weaponController))
             return false;
-
-        // 🔸 Elegir un arma random
+        
         string randomName = weaponNames[Random.Range(0, weaponNames.Count)];
-
-        // 🔸 Si ya tiene esa arma → dar munición
+        
         if (weaponController.currentWeapon != null &&
             weaponController.currentWeapon.Name == randomName)
         {
@@ -40,8 +37,7 @@ public class WeaponCrate : MonoBehaviourPun, IInteractable
             OpenAndDestroyCrate();
             return true;
         }
-
-        // 🔸 Buscar entre las armas del jugador (desactivadas dentro del prefab)
+        
         Weapon[] playerWeapons = source.GetComponentsInChildren<Weapon>(true);
         Weapon targetWeapon = null;
 
@@ -60,26 +56,42 @@ public class WeaponCrate : MonoBehaviourPun, IInteractable
             return false;
         }
 
-        // 🔸 Equipar arma
-        weaponController.GrabWeapon(targetWeapon);
+        // Equipar arma
+        
         Debug.Log($"[Crate] Nueva arma equipada: {randomName}");
 
         OpenAndDestroyCrate();
+        // Desactivar el arma actual
+        if (weaponController.currentWeapon != null) {
+            weaponController.currentWeapon.gameObject.SetActive(false);
+            weaponController.currentWeapon.equipped = false;
+        }
+
+// Activar la nueva
+        targetWeapon.gameObject.SetActive(true);
+        targetWeapon.equipped = true;
+        weaponController.currentWeapon = targetWeapon;
+
+// Sincronizar visual con los demás jugadores
+        weaponController.photonView.RPC(
+            "RPC_SetEquippedWeapon",
+            RpcTarget.AllBuffered,
+            targetWeapon.Name
+        );
+
         return true;
     }
 
     private void OpenAndDestroyCrate()
     {
         isOpened = true;
-
-        // 🔹 Mostrar efectos visuales y de sonido localmente
+        
         if (openEffect)
             Instantiate(openEffect, transform.position, Quaternion.identity);
 
         if (openSound)
             AudioSource.PlayClipAtPoint(openSound, transform.position);
-
-        // 🔹 Destruir la caja en red
+        
         if (photonView != null)
         {
             photonView.RPC(nameof(RPC_DestroyCrate), RpcTarget.AllBuffered);
@@ -98,43 +110,6 @@ public class WeaponCrate : MonoBehaviourPun, IInteractable
         else
             Destroy(gameObject);
     }
-    
-    // [PunRPC]
-    // private void RPC_RequestOpen(int playerActorNumber)
-    // {
-    //     if (isOpened) return;
-    //
-    //     // Solo el MasterClient ejecuta la lógica
-    //     Photon.Realtime.Player player = PhotonNetwork.CurrentRoom.GetPlayer(playerActorNumber);
-    //     if (player == null) return;
-    //
-    //     GameObject playerObj = GetPlayerObject(player);
-    //     if (playerObj == null) return;
-    //
-    //     if (!playerObj.TryGetComponent(out WeaponController weaponController)) return;
-    //     if (!playerObj.TryGetComponent(out AmmoInventory ammoInventory)) return;
-    //
-    //     int randomIndex = Random.Range(0, weaponPrefabs.Length);
-    //     GameObject randomWeaponPrefab = weaponPrefabs[randomIndex];
-    //     Weapon randomWeapon = randomWeaponPrefab.GetComponent<Weapon>();
-    //
-    //     if (randomWeapon == null) return;
-    //
-    //     Weapon currentWeapon = weaponController.currentWeapon;
-    //     if (currentWeapon != null && currentWeapon.Name == randomWeapon.Name)
-    //     {
-    //         ammoInventory.AddAmmo(randomWeapon.ammoType, ammoRewardOnDuplicate);
-    //         Debug.Log($"Duplicado: +{ammoRewardOnDuplicate} de munición para {randomWeapon.Name}");
-    //     }
-    //     else
-    //     {
-    //         weaponController.GrabWeapon(randomWeapon.GetComponent<Weapon>());
-    //         Debug.Log($"Nueva arma: {randomWeapon.Name}");
-    //     }
-    //
-    //     photonView.RPC(nameof(RPC_OpenCrateFX), RpcTarget.All);
-    //     isOpened = true;
-    // }
     
     [PunRPC]
     private void RPC_OpenCrateFX()

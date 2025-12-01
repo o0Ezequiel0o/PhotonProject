@@ -8,7 +8,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] List<WeaponSlot> weaponSlots;
     [SerializeField] private Transform grabPosition;
     [SerializeField] private Transform pivot;
-    [SerializeField] private PhotonView photonView;
+    [SerializeField] public PhotonView photonView;
     [SerializeField] private Player player;
 
     public Weapon currentWeapon = null;
