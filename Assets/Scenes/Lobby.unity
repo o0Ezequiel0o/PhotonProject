@@ -358,6 +358,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponCrate (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1708614346826766887, guid: e352cb4611826874590e303d96c5a952, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4517123355684924939, guid: e352cb4611826874590e303d96c5a952, type: 3}
       propertyPath: sceneViewId
       value: 2
@@ -1461,6 +1465,9 @@ MonoBehaviour:
     rotation: {x: 0, y: 0, z: 0, w: 0}
   - name: ExplosiveBarrel
     position: {x: -4.97, y: 2.15, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+  - name: WeaponCrate
+    position: {x: -2.12, y: -3.46, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!4 &164410792
 Transform:
@@ -6707,6 +6714,10 @@ PrefabInstance:
     - target: {fileID: 1708614346826766887, guid: e352cb4611826874590e303d96c5a952, type: 3}
       propertyPath: m_Name
       value: WeaponCrate
+      objectReference: {fileID: 0}
+    - target: {fileID: 1708614346826766887, guid: e352cb4611826874590e303d96c5a952, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4517123355684924939, guid: e352cb4611826874590e303d96c5a952, type: 3}
       propertyPath: sceneViewId
@@ -37223,6 +37234,10 @@ PrefabInstance:
     - target: {fileID: 1708614346826766887, guid: e352cb4611826874590e303d96c5a952, type: 3}
       propertyPath: m_Name
       value: WeaponCrate (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1708614346826766887, guid: e352cb4611826874590e303d96c5a952, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4517123355684924939, guid: e352cb4611826874590e303d96c5a952, type: 3}
       propertyPath: sceneViewId

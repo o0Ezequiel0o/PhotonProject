@@ -1,8 +1,9 @@
 using UnityEngine;
+using Photon.Pun;
 
 public class ParticlesOnDestroy : MonoBehaviour
 {
-    [SerializeField] private GameObject particles;
+    [SerializeField] private string particles;
 
     private void Awake()
     {
@@ -16,6 +17,8 @@ public class ParticlesOnDestroy : MonoBehaviour
     {
         if (particles == null) return;
 
-        Instantiate(particles, transform.position, Quaternion.identity);
+        PhotonNetwork.Instantiate(particles, transform.position, Quaternion.identity);
+        
+        
     }
 }
