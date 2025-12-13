@@ -1029,11 +1029,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   photonView: {fileID: 6371052916873527321}
-  spriteRenderer: {fileID: 7323365614569274661}
-  partsToHide:
-  - {fileID: 1478888604016615765}
-  - {fileID: 3771659345046981015}
-  downedSprite: {fileID: 21300000, guid: 3702484b0e9c36143ae7cc768d65c65d, type: 3}
   reviveTime: 5
   stopRevivingDistance: 3
   IsDowned: 0

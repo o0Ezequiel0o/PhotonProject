@@ -7,10 +7,6 @@ public class DownHandler : MonoBehaviour, IInteractable
 {
     [SerializeField] private PhotonView photonView;
     [Space]
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private List<GameObject> partsToHide;
-    [SerializeField] private Sprite downedSprite;
-    [Space]
     [SerializeField] private float reviveTime;
     [SerializeField] private float stopRevivingDistance;
 
@@ -25,8 +21,6 @@ public class DownHandler : MonoBehaviour, IInteractable
     private GameObject reviveBarInstance;
 
     private Coroutine reviveCoroutine;
-
-    private StatMultiplier zeroMultiplier = new StatMultiplier(0f);
 
     public bool Interact(GameObject source)
     {
@@ -81,8 +75,6 @@ public class DownHandler : MonoBehaviour, IInteractable
         {
             entityMove.moveSpeed.AddMultiplier(revivingSpeedMultiplier);
         }
-
-        originalSprite = spriteRenderer.sprite;
     }
 
     private void Revive()
@@ -121,12 +113,6 @@ public class DownHandler : MonoBehaviour, IInteractable
             entityMove.moveSpeed.RemoveMultiplier(downedSpeedMultiplier);
         }
 
-        foreach (GameObject go in partsToHide)
-        {
-            go.SetActive(true);
-        }
-
-        spriteRenderer.sprite = originalSprite;
         Debug.Log("revived");
     }
 
@@ -141,12 +127,5 @@ public class DownHandler : MonoBehaviour, IInteractable
         {
             entityMove.moveSpeed.AddMultiplier(downedSpeedMultiplier);
         }
-
-        foreach(GameObject go in partsToHide)
-        {
-            go.SetActive(false);
-        }
-
-        spriteRenderer.sprite = downedSprite;
     }
 }
