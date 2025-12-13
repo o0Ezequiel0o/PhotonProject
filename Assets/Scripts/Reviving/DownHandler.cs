@@ -34,8 +34,8 @@ public class DownHandler : MonoBehaviour, IInteractable
 
         if (IsDowned)
         {
-            reviveCoroutine = StartCoroutine(ReviveCoroutine());
             reviver = source.GetComponent<Player>();
+            reviveCoroutine = StartCoroutine(ReviveCoroutine());
             beingRevived = true;
 
             return true;

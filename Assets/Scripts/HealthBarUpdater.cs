@@ -19,6 +19,7 @@ public class HealthBarUpdater : MonoBehaviour
     {
         if (photonView.IsMine)
         {
+            health.onHealthChanged += UpdateHealthBar;
             health.onDamageTaken += UpdateHealthBar;
         }
 

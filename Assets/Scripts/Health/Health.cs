@@ -37,6 +37,11 @@ public class Health : MonoBehaviourPun
     [PunRPC]
     public void RPC_UpdateHealth(int newValue)
     {
+        if (newValue > 0)
+        {
+            isAlive = true;
+        }
+
         currentHp = Mathf.Min(newValue, maxHp);
         onHealthChanged?.Invoke();
     }
