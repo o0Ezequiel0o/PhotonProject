@@ -6459,6 +6459,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ErrorHandler
       objectReference: {fileID: 0}
+    - target: {fileID: 8207279548407341609, guid: e0426e883d8b10840ae3e75266204b22, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8978076675818653755, guid: e0426e883d8b10840ae3e75266204b22, type: 3}
       propertyPath: spawnParent
       value: 

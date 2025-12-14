@@ -83,7 +83,7 @@ public class DownHandler : MonoBehaviour, IInteractable
         photonView.RPC("RPC_UpdateHealth", RpcTarget.All, 100);
 
         if (reviveBarInstance != null)
-        reviveBarInstance.GetPhotonView().RPC("RPC_DestroyBar", RpcTarget.All);
+            reviveBarInstance.GetPhotonView().RPC("RPC_DestroyBar", RpcTarget.All);
     }
 
     private void GoDowned()
